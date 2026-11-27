@@ -4,38 +4,344 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>9NA GameDuB TH — พากย์ไทยสดระหว่างเล่นเกม</title>
+  <meta name="description" content="อ่านซับอังกฤษในเกม แปลไทย แล้วพากย์ออกลำโพงทันที แจกฟรีโดย NINENA LOOP">
+  <meta property="og:title" content="9NA GameDuB TH — พากย์ไทยสดระหว่างเล่นเกม">
+  <meta property="og:description" content="อ่านซับอังกฤษในเกม แปลไทย แล้วพากย์ออกลำโพงทันที แจกฟรี">
+  <meta property="og:image" content="https://github.com/NINENA-LOOP.png?size=512">
+  <link rel="icon" href="https://github.com/NINENA-LOOP.png?size=64">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: sans-serif; max-width: 720px; margin: 40px auto; padding: 0 16px; line-height: 1.7; background: #0f1117; color: #e6e6e6; }
-    a { color: #6cb6ff; }
-    .btn { display: inline-block; background: #e63946; color: #fff; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-size: 20px; }
-    .warn { background: #3a2f0b; border: 1px solid #a37f00; padding: 12px 16px; border-radius: 8px; }
-    .note { color: #aaa; font-size: 15px; }
+    :root {
+      --abyss: #020b1a;
+      --deep: #04203d;
+      --sea: #0a4a7a;
+      --shallow: #1586c7;
+      --foam: #7fdcff;
+      --glow: #3fd0ff;
+      --sand: #ffd27a;
+      --text: #e8f6ff;
+      --muted: #9cc3dc;
+      --card: rgba(10, 50, 90, 0.35);
+      --line: rgba(127, 220, 255, 0.18);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Sarabun', sans-serif;
+      color: var(--text);
+      background: var(--abyss);
+      line-height: 1.75;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    h1, h2, h3, .btn, .tag, nav { font-family: 'Kanit', sans-serif; }
+    a { color: var(--foam); }
+
+    /* ---------- light rays ---------- */
+    .rays {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        repeating-linear-gradient(100deg, transparent 0 60px, rgba(180, 235, 255, 0.05) 60px 90px, transparent 90px 170px);
+      mask-image: linear-gradient(180deg, #000 0%, transparent 60%);
+      -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 60%);
+      animation: sway 14s ease-in-out infinite alternate;
+    }
+    @keyframes sway { from { transform: translateX(-40px) skewX(-4deg); } to { transform: translateX(40px) skewX(4deg); } }
+
+    /* ---------- bubbles ---------- */
+    .bubbles { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+    .bubble {
+      position: absolute; bottom: -40px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(127,220,255,0.25) 40%, rgba(127,220,255,0.05) 70%);
+      border: 1px solid rgba(200, 240, 255, 0.35);
+      animation: rise linear infinite;
+    }
+    @keyframes rise {
+      0%   { transform: translate(0, 0); opacity: 0; }
+      10%  { opacity: 0.8; }
+      50%  { transform: translate(var(--drift), -55vh); }
+      100% { transform: translate(0, -115vh); opacity: 0; }
+    }
+
+    main, header, footer { position: relative; z-index: 2; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+    /* ---------- nav ---------- */
+    .bubbles, .rays { z-index: 3; }
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      background: rgba(4, 32, 61, 0.55);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 600; }
+    .brand img { width: 34px; height: 34px; border-radius: 9px; }
+    nav ul { display: flex; gap: 22px; list-style: none; }
+    nav ul a { color: var(--muted); text-decoration: none; font-size: 15px; transition: color .2s; }
+    nav ul a:hover { color: var(--foam); }
+
+    /* ---------- hero ---------- */
+    .hero { padding: 70px 0 150px; text-align: center; position: relative; background: linear-gradient(180deg, #0b5d93 0%, var(--sea) 70%, #073660 100%); }
+    main { background: linear-gradient(180deg, var(--deep) 0%, #031529 50%, var(--abyss) 100%); }
+    .mascot {
+      display: block; margin: 0 auto;
+      width: 190px; height: 190px; border-radius: 50%; object-fit: cover; background: rgba(127,220,255,0.12);
+      box-shadow: 0 0 0 6px rgba(127,220,255,0.15), 0 0 60px rgba(63,208,255,0.45);
+      animation: float 5s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-16px) rotate(2deg); } }
+    .tag {
+      display: inline-block; margin: 26px 0 10px; padding: 4px 14px; border-radius: 99px;
+      background: rgba(255, 210, 122, 0.12); color: var(--sand); border: 1px solid rgba(255,210,122,0.4); font-size: 14px;
+    }
+    .hero h1 { font-size: clamp(38px, 7vw, 64px); line-height: 1.15; font-weight: 700; }
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--foam), #ffffff, var(--glow));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      background-size: 200% 100%; animation: shimmer 6s linear infinite;
+    }
+    @keyframes shimmer { to { background-position: -200% 0; } }
+    .hero p.lead { font-size: 20px; color: var(--muted); margin: 14px auto 30px; max-width: 560px; }
+    .flow { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 34px; }
+    .flow span { padding: 6px 14px; border-radius: 10px; background: var(--card); border: 1px solid var(--line); font-size: 15px; }
+    .flow i { font-style: normal; color: var(--glow); align-self: center; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 34px; border-radius: 14px; font-size: 21px; font-weight: 600;
+      color: #032039; text-decoration: none;
+      background: linear-gradient(180deg, #9be8ff, var(--glow));
+      box-shadow: 0 10px 30px rgba(63,208,255,0.35), inset 0 -3px 0 rgba(0,0,0,0.15);
+      transition: transform .2s, box-shadow .2s;
+      position: relative; overflow: hidden;
+    }
+    .btn::after {
+      content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+      transform: skewX(-20deg); animation: shine 3.5s ease-in-out infinite;
+    }
+    @keyframes shine { 0%, 60% { left: -60%; } 100% { left: 130%; } }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(63,208,255,0.5); }
+    .meta { margin-top: 14px; color: var(--muted); font-size: 14px; }
+
+    /* ---------- waves ---------- */
+    .waves { position: absolute; left: 0; bottom: 0; width: 100%; height: 110px; }
+    .waves svg { position: absolute; bottom: 0; width: 200%; height: 100%; }
+    .waves .w1 { animation: wave 18s linear infinite; opacity: .35; }
+    .waves .w2 { animation: wave 12s linear infinite reverse; opacity: .55; }
+    .waves .w3 { animation: wave 8s linear infinite; }
+    @keyframes wave { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ---------- sections ---------- */
+    section { padding: 70px 0; }
+    section h2 { font-size: clamp(28px, 4vw, 38px); text-align: center; margin-bottom: 10px; }
+    section .sub { text-align: center; color: var(--muted); margin-bottom: 40px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 24px;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+    .card:hover { transform: translateY(-6px); border-color: rgba(127,220,255,0.5); box-shadow: 0 14px 40px rgba(0,0,0,0.35); }
+    .card .ic { font-size: 30px; margin-bottom: 8px; }
+    .card h3 { font-size: 20px; margin-bottom: 6px; }
+    .card p { color: var(--muted); font-size: 16px; }
+
+    .steps { counter-reset: s; display: grid; gap: 14px; max-width: 720px; margin: 0 auto; }
+    .step { display: flex; gap: 18px; align-items: flex-start; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 22px; }
+    .step::before {
+      counter-increment: s; content: counter(s);
+      flex: 0 0 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+      font-family: 'Kanit', sans-serif; font-weight: 600; color: #032039;
+      background: radial-gradient(circle at 35% 30%, #fff, var(--glow));
+    }
+    kbd {
+      font-family: 'Kanit', sans-serif; font-size: 14px; padding: 1px 8px; border-radius: 6px;
+      background: rgba(255,255,255,0.1); border: 1px solid var(--line); border-bottom-width: 3px;
+    }
+
+    table { width: 100%; max-width: 720px; margin: 0 auto; border-collapse: collapse; }
+    td { padding: 12px 14px; border-bottom: 1px solid var(--line); }
+    td:first-child { white-space: nowrap; width: 1%; }
+
+    .trust { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+    .warn {
+      max-width: 720px; margin: 30px auto 0; text-align: center;
+      background: rgba(255, 210, 122, 0.1); border: 1px solid rgba(255,210,122,0.45);
+      color: #ffe7b3; border-radius: 14px; padding: 16px 20px; font-weight: 500;
+    }
+
+    details { max-width: 720px; margin: 0 auto 12px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 4px 20px; }
+    summary { cursor: pointer; padding: 14px 0; font-family: 'Kanit', sans-serif; font-weight: 500; font-size: 17px; list-style: none; }
+    summary::-webkit-details-marker { display: none; }
+    summary::before { content: "＋"; color: var(--glow); margin-right: 10px; }
+    details[open] summary::before { content: "－"; }
+    details p { color: var(--muted); padding-bottom: 16px; }
+
+    .cta { text-align: center; padding: 80px 0 60px; }
+
+    footer { border-top: 1px solid var(--line); padding: 30px 0 40px; text-align: center; color: var(--muted); font-size: 15px; }
+    footer .social { display: flex; justify-content: center; gap: 18px; margin-bottom: 10px; }
+    footer .social a { text-decoration: none; padding: 8px 18px; border-radius: 99px; border: 1px solid var(--line); transition: background .2s; }
+    footer .social a:hover { background: rgba(127,220,255,0.12); }
+
+    /* ---------- scroll reveal ---------- */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.show { opacity: 1; transform: none; }
+
+    @media (max-width: 640px) {
+      nav ul { display: none; }
+      .hero { padding-top: 40px; }
+      .mascot { width: 150px; height: 150px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+      .bubbles { display: none; }
+    }
   </style>
 </head>
 <body>
-  <h1>9NA GameDuB TH</h1>
-  <p>อ่านซับอังกฤษในเกม → แปลไทย → พากย์ออกลำโพงทันที</p>
+  <div class="rays"></div>
+  <div class="bubbles" id="bubbles"></div>
 
-  <p><a class="btn" href="https://github.com/NINENA-LOOP/ninena-loop.github.io/releases/latest/download/9NA-GameDuB-TH.zip">⬇ ดาวน์โหลดฟรี</a></p>
-  <p class="note">สำหรับ Windows 10/11</p>
+  <nav>
+    <div class="wrap">
+      <a class="brand" href="#"><img src="https://github.com/NINENA-LOOP.png?size=96" alt="">NINENA LOOP</a>
+      <ul>
+        <li><a href="#features">ความสามารถ</a></li>
+        <li><a href="#how">วิธีใช้</a></li>
+        <li><a href="#safe">ความปลอดภัย</a></li>
+        <li><a href="#faq">คำถาม</a></li>
+      </ul>
+    </div>
+  </nav>
 
-  <div class="warn">⚠️ แจกฟรีเท่านั้น ห้ามนำไปขาย — ถ้าคุณจ่ายเงินซื้อโปรแกรมนี้มา แปลว่าคุณโดนหลอก</div>
+  <header class="hero">
+    <div class="wrap">
+      <img class="mascot" src="https://github.com/NINENA-LOOP.png?size=400" alt="มาสคอต NINENA LOOP">
+      <div class="tag">แจกฟรี 100% · ไม่มีขาย</div>
+      <h1><span>9NA GameDuB TH</span></h1>
+      <p class="lead">เล่นเกมภาษาอังกฤษ แต่ได้ยินเป็นเสียงพากย์ไทยแบบสดๆ</p>
+      <div class="flow">
+        <span>👀 อ่านซับบนจอ</span><i>➜</i><span>🌊 แปลเป็นไทย</span><i>➜</i><span>🔊 พากย์ออกลำโพง</span>
+      </div>
+      <a class="btn" href="https://github.com/NINENA-LOOP/ninena-loop.github.io/releases/latest/download/9NA-GameDuB-TH.zip">⬇ ดาวน์โหลดฟรี</a>
+      <div class="meta">เวอร์ชัน 1.0.0 · Windows 10/11 · ประมาณ 45 MB · <a href="https://github.com/NINENA-LOOP/ninena-loop.github.io/releases">ดูทุกเวอร์ชัน</a></div>
+    </div>
+    <div class="waves" aria-hidden="true">
+      <svg class="w1" viewBox="0 0 2880 110" preserveAspectRatio="none"><path fill="#04203d" d="M0 60 C 240 20 480 100 720 60 S 1200 20 1440 60 S 1920 100 2160 60 S 2640 20 2880 60 V110 H0Z"/></svg>
+      <svg class="w2" viewBox="0 0 2880 110" preserveAspectRatio="none"><path fill="#04203d" d="M0 70 C 180 40 360 100 720 70 S 1260 40 1440 70 S 1800 100 2160 70 S 2700 40 2880 70 V110 H0Z"/></svg>
+      <svg class="w3" viewBox="0 0 2880 110" preserveAspectRatio="none"><path fill="#04203d" d="M0 85 C 300 65 420 105 720 85 S 1140 65 1440 85 S 1860 105 2160 85 S 2580 65 2880 85 V110 H0Z"/></svg>
+    </div>
+  </header>
 
-  <h2>วิธีใช้</h2>
-  <ol>
-    <li>แตกไฟล์ zip แล้วเปิด <b>9NA GameDuB TH.exe</b> (ถ้า Windows เตือน ให้กด <b>More info → Run anyway</b>)</li>
-    <li>ใส่ key ของ Claude — ขอได้ที่ <a href="https://console.anthropic.com/settings/keys" target="_blank">console.anthropic.com</a></li>
-    <li>กด <b>⛶ เลือกพื้นที่ซับ</b> แล้วลากคลุมบริเวณที่ซับในเกมขึ้น</li>
-    <li>พิมพ์ชื่อเกมที่เล่น</li>
-    <li>กด <b>▶ เริ่มพากย์</b> หรือกด <b>F9</b></li>
-  </ol>
+  <main>
+    <section id="features">
+      <div class="wrap">
+        <h2 class="reveal">ทำอะไรได้บ้าง</h2>
+        <p class="sub reveal">เปิดทิ้งไว้ข้างเกม แล้วเล่นไปฟังไป</p>
+        <div class="grid">
+          <div class="card reveal"><div class="ic">🎙️</div><h3>พากย์ไทยสด</h3><p>ซับขึ้นปุ๊บ ได้ยินเสียงไทยปั๊บ ไม่ต้องละสายตาจากเกม</p></div>
+          <div class="card reveal"><div class="ic">🧠</div><h3>แปลตามบริบท</h3><p>แปลด้วย Claude ใส่ชื่อเกมไว้ ชื่อตัวละครและศัพท์ในเกมจะแปลได้ถูกขึ้น</p></div>
+          <div class="card reveal"><div class="ic">🎭</div><h3>เสียงตามตัวละคร</h3><p>กำหนดเพศและชื่อไทยของตัวละครเองได้ ผู้ชายพูด "ผม" ผู้หญิงพูด "ฉัน"</p></div>
+          <div class="card reveal"><div class="ic">📜</div><h3>อ่านเควสและสรุปเรื่อง</h3><p>กดปุ่มเดียว อ่านข้อความเควสหรือสรุปว่าตัวละครเพิ่งคุยอะไรกัน</p></div>
+        </div>
+      </div>
+    </section>
 
-  <h2>ค่าใช้จ่าย</h2>
-  <p>โปรแกรมฟรี แต่ค่าแปลผู้ใช้จ่ายเองผ่าน key ของ Claude (คิดตามที่ใช้จริง) · เสียงพากย์ Edge ฟรี · เสียง ElevenLabs ใส่ key เองได้ ไม่บังคับ</p>
+    <section id="how">
+      <div class="wrap">
+        <h2 class="reveal">เริ่มใช้ใน 5 ขั้น</h2>
+        <p class="sub reveal">ครั้งแรกใช้เวลาประมาณ 5 นาที</p>
+        <div class="steps">
+          <div class="step reveal"><div>แตกไฟล์ zip แล้วเปิด <b>9NA GameDuB TH.exe</b><br><small style="color:var(--muted)">ถ้า Windows เตือน ให้กด <b>More info → Run anyway</b> (เป็นเรื่องปกติของโปรแกรมแจกฟรีที่ไม่ได้ซื้อใบรับรอง)</small></div></div>
+          <div class="step reveal"><div>ใส่ key ของ Claude — ขอได้ที่ <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a> แล้วกด <b>วาง → ทดสอบ → บันทึก</b></div></div>
+          <div class="step reveal"><div>กด <b>⛶ เลือกพื้นที่ซับ</b> แล้วลากเมาส์คลุมบริเวณที่ซับในเกมขึ้น</div></div>
+          <div class="step reveal"><div>พิมพ์ <b>ชื่อเกมที่เล่น</b></div></div>
+          <div class="step reveal"><div>กด <b>▶ เริ่มพากย์</b> หรือกด <kbd>F9</kbd> ระหว่างเล่น</div></div>
+        </div>
 
-  <h2>ติดตาม</h2>
-  <p><a href="https://www.youtube.com/@NINENALOOP" target="_blank">YouTube</a> · <a href="https://www.tiktok.com/@ninenaloop" target="_blank">TikTok</a></p>
+        <h2 class="reveal" style="margin-top:60px">ปุ่มลัดระหว่างเล่น</h2>
+        <p class="sub reveal">ไม่ต้องสลับหน้าจอออกจากเกม</p>
+        <table class="reveal">
+          <tr><td><kbd>F9</kbd></td><td>เปิด/ปิดพากย์</td></tr>
+          <tr><td><kbd>F8</kbd></td><td>สลับเสียงฟรี (Edge) ↔ เสียงพรีเมียม (ElevenLabs)</td></tr>
+          <tr><td><kbd>Num 1–4</kbd></td><td>อ่านและแปลจุดที่ตั้งไว้ เช่น เควส หรือข้อความในเกม</td></tr>
+          <tr><td><kbd>Num 5</kbd></td><td>สรุปว่าตัวละครเพิ่งคุยอะไรกัน</td></tr>
+        </table>
+      </div>
+    </section>
 
-  <p class="note">พัฒนาโดย NINENA LOOP</p>
+    <section id="safe">
+      <div class="wrap">
+        <h2 class="reveal">ปลอดภัย โปร่งใส</h2>
+        <p class="sub reveal">เราไม่ได้เงินจากคุณสักบาท และไม่เก็บข้อมูลของคุณ</p>
+        <div class="trust">
+          <div class="card reveal"><div class="ic">🔐</div><h3>key อยู่ในเครื่องคุณ</h3><p>API key เก็บไว้ในเครื่องของคุณเท่านั้น (<code>%LOCALAPPDATA%\GameDubTH</code>) ห้ามส่งไฟล์ key ให้ใคร</p></div>
+          <div class="card reveal"><div class="ic">💸</div><h3>จ่ายตามจริง ให้ผู้ให้บริการ</h3><p>ค่าแปลคิดตามการใช้งานจริง จ่ายตรงให้ Anthropic (Claude) · เสียง Edge ฟรี · ElevenLabs ไม่บังคับ</p></div>
+          <div class="card reveal"><div class="ic">🐟</div><h3>ของแท้มีที่เดียว</h3><p>ดาวน์โหลดจากเว็บนี้หรือ GitHub ของ NINENA LOOP เท่านั้น ไฟล์จากที่อื่นอาจถูกดัดแปลง</p></div>
+        </div>
+        <div class="warn reveal">⚠️ แจกฟรีเท่านั้น ห้ามนำไปขาย — ถ้าคุณจ่ายเงินซื้อโปรแกรมนี้มา แปลว่าคุณโดนหลอก</div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <h2 class="reveal">คำถามที่พบบ่อย</h2>
+        <p class="sub reveal">&nbsp;</p>
+        <details class="reveal"><summary>ฟรีจริงไหม?</summary><p>ตัวโปรแกรมฟรี 100% ไม่มีเวอร์ชันเสียเงิน สิ่งที่ต้องจ่ายมีแค่ค่าแปลของ Claude ซึ่งคุณจ่ายตรงให้ Anthropic ตามที่ใช้จริง</p></details>
+        <details class="reveal"><summary>ทำไม Windows ขึ้นเตือนตอนเปิด?</summary><p>เพราะโปรแกรมไม่ได้ซื้อใบรับรองการเซ็นโค้ด (มีค่าใช้จ่ายรายปี) Windows จึงไม่รู้จักผู้พัฒนา กด More info → Run anyway ได้เลย และดาวน์โหลดจากเว็บนี้เท่านั้น</p></details>
+        <details class="reveal"><summary>ประหยัดค่าแปลยังไง?</summary><p>ตั้งคุณภาพคำแปลเป็น "เร็ว" (ถูกที่สุด) ปิด "แปลเร็วพิเศษ" ไว้ และใช้รุ่นสรุปแบบ "ประหยัด"</p></details>
+        <details class="reveal"><summary>แอพบอกว่าไม่มี "ชุดอ่านตัวหนังสือภาษาอังกฤษ"</summary><p>กด "ใช่" แอพจะติดตั้งให้ (ฟรีจาก Microsoft) เสร็จแล้วเปิดแอพใหม่</p></details>
+        <details class="reveal"><summary>เจอปัญหา แจ้งได้ที่ไหน?</summary><p>กดปุ่ม "โฟลเดอร์ log" ในแอพ แล้วส่งไฟล์ <code>gamedub.log</code> มาทางช่องทางของ NINENA LOOP ด้านล่าง (ห้ามส่งไฟล์ <code>keys.env</code>)</p></details>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <h2 class="reveal">พร้อมดำดิ่งแล้วหรือยัง?</h2>
+        <p class="sub reveal">โหลดฟรี เล่นเกมโปรดด้วยเสียงพากย์ไทย</p>
+        <a class="btn reveal" href="https://github.com/NINENA-LOOP/ninena-loop.github.io/releases/latest/download/9NA-GameDuB-TH.zip">⬇ ดาวน์โหลดฟรี</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="social">
+        <a href="https://www.youtube.com/@NINENALOOP" target="_blank" rel="noopener">▶ YouTube</a>
+        <a href="https://www.tiktok.com/@ninenaloop" target="_blank" rel="noopener">♪ TikTok</a>
+        <a href="https://github.com/NINENA-LOOP" target="_blank" rel="noopener">GitHub</a>
+      </div>
+      พัฒนาโดย NINENA LOOP · แจกฟรี ห้ามนำไปขาย
+    </div>
+  </footer>
+
+  <script>
+    // bubbles
+    const box = document.getElementById('bubbles');
+    const count = window.innerWidth < 640 ? 14 : 26;
+    for (let i = 0; i < count; i++) {
+      const b = document.createElement('span');
+      const size = 6 + Math.random() * 22;
+      b.className = 'bubble';
+      b.style.width = b.style.height = size + 'px';
+      b.style.left = Math.random() * 100 + '%';
+      b.style.setProperty('--drift', (Math.random() * 60 - 30) + 'px');
+      b.style.animationDuration = (10 + Math.random() * 14) + 's';
+      b.style.animationDelay = (-Math.random() * 20) + 's';
+      box.appendChild(b);
+    }
+    // scroll reveal
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
 </body>
 </html>
